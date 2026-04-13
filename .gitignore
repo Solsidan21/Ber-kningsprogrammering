@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+
+# Stora binärfiler
+textbook/*.pdf
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Claude Code (sessionsdata, ej projektinstruktioner)
+.claude/
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
