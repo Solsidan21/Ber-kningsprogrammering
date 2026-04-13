@@ -24,3 +24,6 @@ textbook/*.pdf
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Delad gruppmapp (synkas separat)
+NUMA01-group/
