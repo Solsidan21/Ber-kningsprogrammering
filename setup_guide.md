@@ -1,5 +1,19 @@
 # VS Code Setup Guide — NUMA01
 
+## 0. Klona repot (för Sixten / nya collaborators)
+
+```bash
+git clone https://github.com/Solsidan21/Ber-kningsprogrammering.git
+cd Ber-kningsprogrammering
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+Sedan följ steg 1-4 nedan.
+
+---
+
 ## 1. Installera VS Code-extensions
 
 Tryck Cmd+Shift+X och sök efter dessa:

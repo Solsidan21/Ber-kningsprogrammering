@@ -25,5 +25,5 @@ textbook/*.pdf
 .coverage
 htmlcov/
 
-# Delad gruppmapp (synkas separat)
+# Lokala gruppmappen (ersatt av detta repo)
 NUMA01-group/

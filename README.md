@@ -3,6 +3,19 @@
 **Lunds Universitet, VT2026**
 **Lärare:** Robert Klöfkorn (RK)
 **Kursbok:** Führer, Solem, Verdier – *Scientific Computing with Python* (2nd Ed.), Packt 2021 → [textbook/](textbook/)
+**Studenter:** Arvid Brenner & Sixten Midsem
+
+## Komma igång (för nya collaborators)
+
+Se [setup_guide.md](setup_guide.md) för fullständiga instruktioner. Snabbversion:
+
+```bash
+git clone https://github.com/Solsidan21/Ber-kningsprogrammering.git
+cd Ber-kningsprogrammering
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
 ## Examination
 
@@ -33,7 +46,7 @@ Alla inlämningar presenteras muntligt.
 | Mapp | Innehåll |
 |------|----------|
 | `unitXX_*/` | Övningar, föreläsningsmaterial, anteckningar per unit |
-| `homework/` | Inlämningsuppgifter (Arvid & Sixten) |
+| `homework/` | Gruppuppgifter (Arvid & Sixten) |
 | `final_project/` | Slutprojekt (grupparbete) |
 | `textbook/` | Kursbok (PDF + extraherat markdown-innehåll) |
 | `resources/` | Övrigt material från Canvas |
