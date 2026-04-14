@@ -7,6 +7,30 @@ Kursen följer boken *Scientific Computing with Python* av Führer, Solem & Verd
 
 Studenter: Arvid Brenner & Sixten Midsem (gruppuppgifter görs ihop).
 
+## Kursplanens progression
+
+Kursen följer en bestämd ordning (Unit 01–09). Vid varje tillfälle har studenten bara gått igenom
+en del av kursen. **Kontrollera vilka units som är avklarade** (se `README.md`-tabellen eller fråga
+studenten) och anpassa lösningar därefter:
+
+- Använd **bara koncept och verktyg från avklarade units** i lösningar och förklaringar
+- Om en uppgift kräver koncept från en kommande unit: förklara konceptet från grunden och
+  referera till relevant kapitel i kursboken så studenten kan läsa mer
+- **Flagga tydligt** om en lösning använder något utöver det som täckts hittills
+
+### Kursstruktur och progression
+| Unit | Ämne | Kapitel i boken | Nyckelkoncept |
+|------|------|-----------------|---------------|
+| 01 | Getting Started | Kap 1 | Grundläggande Python, variabler, typer |
+| 02 | Containers | Kap 2 | Listor, dictionaries, tuples |
+| 03 | Functions | Kap 3, 7 | Funktioner, scope, lambda, rekursion, plotting (matplotlib) |
+| 04 | Arrays & Linear Algebra | Kap 4–5 | NumPy arrays, vektorisering, linjär algebra |
+| 05 | Classes & Exceptions | Kap 6, 8 | OOP, klasser, exceptions |
+| 06 | File handling, Iterators | Kap 9 | Filhantering, iteratorer, generatorer |
+| 07 | Plotting (matplotlib) | Kap 7 (fördjupning) | Avancerade plottar, GUI |
+| 08 | Testing & Timing | Kap 10 | pytest, timing, profiling |
+| 09 | Data handling (Pandas) | Kap 11 | pandas, dataframes |
+
 ## Kursbok-referens
 
 Kursboken finns i `textbook/`. Om `textbook/textbook_content.md` finns, använd den som referens
