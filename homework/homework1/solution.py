@@ -32,6 +32,53 @@ def approx_ln(x, n):
     return (x - 1) / a
 
 
+# --- Task 2 ---
+
+def plot_comparison():
+    """Plottar ln(x) vs approx_ln(x, n) och deras differens."""
+    x = linspace(0.01, 5, 200)
+    n_values = [1, 2, 3, 5]
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+
+    # Vänster: funktionerna
+    ax1.plot(x, log(x), 'k-', linewidth=2, label='ln(x)')
+    for n in n_values:
+        ax1.plot(x, approx_ln(x, n), '--', label=f'approx_ln(x, {n})')
+    ax1.set_xlabel('x')
+    ax1.set_ylabel('y')
+    ax1.set_title('ln(x) och approx_ln(x, n)')
+    ax1.legend()
+    ax1.grid(True)
+
+    # Höger: differensen
+    for n in n_values:
+        ax2.plot(x, approx_ln(x, n) - log(x), label=f'n = {n}')
+    ax2.set_xlabel('x')
+    ax2.set_ylabel('approx_ln(x, n) - ln(x)')
+    ax2.set_title('Differens mellan approx_ln och ln')
+    ax2.legend()
+    ax2.grid(True)
+
+    fig.tight_layout()
+
+
+# --- Task 3 ---
+
+def plot_error_convergence():
+    """Plottar |fel| vs n för x = 1.41."""
+    x = 1.41
+    n_values = range(0, 16)
+    errors = [abs(approx_ln(x, n) - log(x)) for n in n_values]
+
+    plt.figure()
+    plt.semilogy(list(n_values), errors, 'o-')
+    plt.xlabel('n (antal iterationer)')
+    plt.ylabel('|approx_ln(1.41, n) - ln(1.41)|')
+    plt.title('Felkonvergens för approx_ln, x = 1.41')
+    plt.grid(True)
+
+
 # --- Task 4: Hjälpfunktion ---
 
 def _compute_a_values(x, n):
@@ -85,53 +132,6 @@ def fast_approx_ln(x, n):
             d[k, i] = (d[k-1, i] - 4**(-k) * d[k-1, i-1]) / (1 - 4**(-k))
 
     return (x - 1) / d[n, n]
-
-
-# --- Task 2 ---
-
-def plot_comparison():
-    """Plottar ln(x) vs approx_ln(x, n) och deras differens."""
-    x = linspace(0.01, 5, 200)
-    n_values = [1, 2, 3, 5]
-
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
-
-    # Vänster: funktionerna
-    ax1.plot(x, log(x), 'k-', linewidth=2, label='ln(x)')
-    for n in n_values:
-        ax1.plot(x, approx_ln(x, n), '--', label=f'approx_ln(x, {n})')
-    ax1.set_xlabel('x')
-    ax1.set_ylabel('y')
-    ax1.set_title('ln(x) och approx_ln(x, n)')
-    ax1.legend()
-    ax1.grid(True)
-
-    # Höger: differensen
-    for n in n_values:
-        ax2.plot(x, approx_ln(x, n) - log(x), label=f'n = {n}')
-    ax2.set_xlabel('x')
-    ax2.set_ylabel('approx_ln(x, n) - ln(x)')
-    ax2.set_title('Differens mellan approx_ln och ln')
-    ax2.legend()
-    ax2.grid(True)
-
-    fig.tight_layout()
-
-
-# --- Task 3 ---
-
-def plot_error_convergence():
-    """Plottar |fel| vs n för x = 1.41."""
-    x = 1.41
-    n_values = range(0, 16)
-    errors = [abs(approx_ln(x, n) - log(x)) for n in n_values]
-
-    plt.figure()
-    plt.semilogy(list(n_values), errors, 'o-')
-    plt.xlabel('n (antal iterationer)')
-    plt.ylabel('|approx_ln(1.41, n) - ln(1.41)|')
-    plt.title('Felkonvergens för approx_ln, x = 1.41')
-    plt.grid(True)
 
 
 # --- Task 5 ---
