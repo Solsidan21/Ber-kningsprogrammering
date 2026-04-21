@@ -10,17 +10,9 @@ import matplotlib.pyplot as plt
 # --- Task 1 ---
 
 def approx_ln(x, n):
-    """Approximerar ln(x) med Carlsons AGM-iteration.
+    """Approximerar ln(x) med Carlsons AGM-iteration efter n steg.
 
-    Metoden bygger på att beräkna aritmetiskt och geometriskt medelvärde
-    iterativt. Efter n steg approximeras ln(x) som (x - 1) / a_n.
-
-    Parametrar:
-        x : float eller array — värde(n) att beräkna ln för (x > 0)
-        n : int — antal iterationssteg
-
-    Returnerar:
-        float eller array — approximation av ln(x)
+    Fungerar för både skalär och array-input (x > 0).
     """
     x = np.asarray(x, dtype=float)
     a = (1 + x) / 2
@@ -35,7 +27,7 @@ def approx_ln(x, n):
 # --- Task 2 ---
 
 def plot_comparison():
-    """Plottar ln(x) vs approx_ln(x, n) och deras differens."""
+    """Plottar ln(x) och approx_ln(x, n) för n = 1, 2, 3, 5 samt differensen."""
     x = linspace(0.01, 5, 200)
     n_values = [1, 2, 3, 5]
 
@@ -66,7 +58,7 @@ def plot_comparison():
 # --- Task 3 ---
 
 def plot_error_convergence():
-    """Plottar |fel| vs n för x = 1.41."""
+    """Plottar |approx_ln(1.41, n) - ln(1.41)| på log-skala för n = 0..15."""
     x = 1.41
     n_values = range(0, 16)
     errors = [abs(approx_ln(x, n) - log(x)) for n in n_values]
@@ -82,11 +74,7 @@ def plot_error_convergence():
 # --- Task 4: Hjälpfunktion ---
 
 def _compute_a_values(x, n):
-    """Beräknar alla a_0, a_1, ..., a_n från AGM-iterationen.
-
-    Returnerar en array med n+1 element.
-    Endast skalär input.
-    """
+    """Returnerar alla a_0, ..., a_n från AGM-iterationen (endast skalär x)."""
     a_vals = zeros(n + 1)
     a = (1 + x) / 2
     g = sqrt(x)
@@ -105,20 +93,7 @@ def _compute_a_values(x, n):
 def fast_approx_ln(x, n):
     """Approximerar ln(x) med Carlsons metod + Richardson-extrapolation.
 
-    Richardson-extrapolation accelererar konvergensen genom att
-    eliminera lägre ordningens feltermer. Tabellen d[k, i] byggs upp
-    enligt:
-        d[0, i] = a_i
-        d[k, i] = (d[k-1, i] - 4^(-k) * d[k-1, i-1]) / (1 - 4^(-k))
-
-    Approximationen ges av (x - 1) / d[n, n].
-
-    Parametrar:
-        x : float — värde att beräkna ln för (x > 0)
-        n : int — antal iterationssteg / extrapolationsnivåer
-
-    Returnerar:
-        float — approximation av ln(x)
+    Bygger en tabell d[k, i] som eliminerar feltermer av ordning 4^(-k).
     """
     a_vals = _compute_a_values(x, n)
 
@@ -137,7 +112,7 @@ def fast_approx_ln(x, n):
 # --- Task 5 ---
 
 def plot_fast_convergence():
-    """Plottar felet för fast_approx_ln för iterationer 2-6."""
+    """Plottar |fast_approx_ln(x, n) - ln(x)| på log-skala för n = 2..6."""
     x_values = linspace(0.01, 20, 300)
     n_values = [2, 3, 4, 5, 6]
 
