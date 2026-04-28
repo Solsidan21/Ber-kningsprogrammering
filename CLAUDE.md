@@ -46,15 +46,38 @@ All kod i detta projekt ska följa kursbokens stil och konventioner:
 - Testning: **pytest**
 - Formatering: **black** (körs automatiskt vid spara i VS Code)
 
-### Import-konventioner (följ kursboken)
+### Import-konventioner
+
+**Kursboken är inte konsekvent själv.** Verifiera alltid mot `textbook/textbook_content.md`
+innan du tillskriver boken någon specifik rekommendation:
+
+- Kap 1.1.4 "Configuration" rekommenderar uttryckligen wildcard-import som default-header:
+  *"We recommend that you use the following header in all your Python files:
+  `from numpy import *` / `from matplotlib.pyplot import *`"*
+- Kap 13.3.1 "Modules" presenterar tre alternativ neutralt (selektiv, wildcard, namespace/
+  alias), pekar ut shadowing som problem med `from`-stilen och visar `import as` som ett
+  sätt att undvika det — men avråder **inte uttryckligen** från `from numpy import *`
+- Boken använder båda stilarna i sina egna kodexempel
+
+**I detta projekt använder vi en medveten hybrid** för att undvika att skugga
+Python-inbyggda namn (`sum`, `min`, `max`, `any`, `abs`, `round` finns alla i numpy):
+
 ```python
 import numpy as np
-from numpy import array, zeros, ones, linspace, arange
+from numpy import array, zeros, ones, linspace, arange, sqrt, log
 import scipy
 import scipy.linalg as sl
 import matplotlib.pyplot as plt
 import pandas as pd
 ```
+
+— Selektiv from-import för matematiska funktioner (formel-läsbarhet), alias för
+NumPy/SciPy-systemverktyg (tydlig namnrymd). Detta är ett medvetet stilval som **avviker
+från setup-kapitlets `from numpy import *`** men är ett av de tre alternativ kap 13.3.1
+explicit nämner.
+
+När du presenterar lösningar för studenten: var ärlig om att detta är vårt val, inte
+"bokens stil". Ljug aldrig om vad boken rekommenderar.
 
 ### Kodstil
 - Använd **svenska** för kommentarer, docstrings och variabelnamn där det passar (t.ex. i övningar och anteckningar), men **engelska** för kod som ska vara generaliserbar
@@ -87,6 +110,26 @@ VS Code med Python-extension, black-formatering och pylint.
 ## Pedagogiskt arbetssätt
 
 Studenten ska kunna **redogöra för och förklara all kod muntligt** för sin lärare. Arbeta därför alltid pedagogiskt:
+
+### Verifiering av påståenden om kursboken
+
+**KRITISKT** (konkret incident: ett tidigare Claude-samtal hävdade att kap 13.3 "avråder
+uttryckligen" från `from numpy import *` — det stämmer inte, och påståendet hamnade i
+Arvids inlämningsförsvar för Homework 1):
+
+- Hävda **aldrig** vad kursboken säger eller rekommenderar utan att först ha verifierat
+  det med grep eller läsning av `textbook/textbook_content.md`
+- Citera **ordagrant** (i citattecken) med kapitel-/avsnittsreferens när du tillskriver
+  boken något
+- Om du inte hittar tydligt stöd i boken: säg *"jag hittar inte detta i boken — det är
+  min egen analys"* istället för att tillskriva boken något
+- Om boken är **inkonsekvent själv** (olika rekommendationer i olika kapitel): redovisa
+  **båda** ordagrant och låt studenten välja medvetet — förenkla aldrig till "boken
+  säger X"
+- Förlita dig **inte** på CLAUDE.md, notes.md eller tidigare samtal som källa för bokens
+  innehåll — verifiera alltid mot `textbook_content.md` direkt
+- Inlämningar och presentationer byggs på verifierbara fakta: studenten får följdfrågor
+  och måste kunna peka på exakt rad/kapitel för varje påstående
 
 ### Kursbok-referens vid uppgifter
 - När studenten arbetar med övningar, homework eller final_project: **sök i `textbook/textbook_content.md`** efter relevanta avsnitt och begrepp
